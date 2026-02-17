@@ -227,11 +227,26 @@ main {
     margin-top: 10px;
 }
 
-/* --- MOBILE OPTIMIZATION (iPhone SE / Android) --- */
-/* --- FULL MOBILE OPTIMIZATION (iPhone SE & Android) --- */
+/* --- MOBILE --- */
 @media (max-width: 650px) {
 
-    /* 1. Header: Logo di Kiri, Menu di Kanan */
+    /* 1. Mendorong Footer Rapat ke Bawah */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh; /* Mengikuti tinggi layar HP secara dinamis */
+    }
+
+    main {
+        flex: 1 0 auto; /* Memaksa bagian ini mengambil sisa ruang agar footer terdorong ke bawah */
+    }
+
+    /* 2. Header: Logo Kiri & Menu Kanan */
     .header-container {
         padding: 8px 12px;
         flex-wrap: nowrap;
@@ -239,8 +254,7 @@ main {
         gap: 8px;
     }
 
-    .logo { flex: 0 0 auto; }
-    .logo img { height: 26px; } /* Ukuran ramping agar muat banyak menu */
+    .logo img { height: 26px; }
 
     .nav-menu {
         flex: 1;
@@ -251,84 +265,68 @@ main {
     }
 
     .nav-menu a {
-        margin: 0;
-        font-size: 0.62rem; /* Ukuran terbaca di lebar 375px */
+        font-size: 0.62rem;
         letter-spacing: -0.2px;
     }
 
-    /* 2. Hero Banner: Full Screen & Centered */
+    /* 3. Hero Banner: Full Screen */
     .hero-section {
-        min-height: 100dvh; /* Mengisi seluruh layar HP dinamis */
-        padding: 40px 15px;
+        min-height: 100dvh;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 40px 15px;
     }
 
     .hero-content h1 {
-        font-size: 1.8rem; /* Pas buat iPhone SE */
+        font-size: 1.8rem;
         line-height: 1.2;
-        margin-bottom: 15px;
     }
 
-    .hero-content p {
-        font-size: 0.9rem;
-        margin-bottom: 25px;
-    }
-
-    .hero-btns {
-        display: flex;
-        flex-direction: column; /* Tombol tumpuk vertikal di HP */
-        gap: 12px;
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-    }
-
-    /* 3. Zigzag Pattern: Paksa Selang-Seling Side-by-Side */
-    .info-section { padding: 30px 0; }
-    
+    /* 4. Zigzag Content: Side-by-Side */
     .container { 
         display: flex !important;
         flex-direction: row !important; 
-        gap: 10px !important; 
-        align-items: flex-start !important;
+        gap: 12px !important; 
     }
     
-    /* Aturan Zigzag (Ganjil Kiri, Genap Kanan) */
     .info-section.reverse .container { 
         flex-direction: row-reverse !important; 
     }
 
-    .info-section .info-text { text-align: left !important; }
-    .info-section.reverse .info-text { text-align: right !important; }
+    .info-image { flex: 0 0 42% !important; min-width: 95px !important; }
+    .info-text h2 { font-size: 0.82rem; }
+    .info-text p { font-size: 0.62rem; }
 
-    .info-image { 
-        flex: 0 0 42% !important; 
-        min-width: 95px !important; 
-    }
-
-    .info-text h2 { font-size: 0.82rem; margin-bottom: 4px; word-break: break-word; }
-    .info-text p { font-size: 0.62rem; line-height: 1.3; }
-    
-    .accent-line { width: 18px; height: 3px; margin-bottom: 6px; }
-    .info-section.reverse .accent-line { margin-left: auto !important; }
-
-    /* 4. Footer & Cookies Fix */
-    .main-footer, footer {
-        padding: 30px 15px;
-    }
-
-    .cookie-content {
-        flex-direction: column;
+    /* 5. Footer Fix Android: Warna Biru Tua & No Gap */
+    footer, .main-footer {
+        flex-shrink: 0;
+        background-color: #0054AA !important; /* Paksa Biru Tua */
+        padding: 25px 15px 15px 15px; /* Tambah padding bawah sedikit agar lega */
         text-align: center;
-        gap: 10px;
     }
 
-    .cookie-content p { font-size: 0.75rem; }
-    
-    #accept-cookie { 
-        width: 100%; 
-        padding: 10px; 
+    .footer-links {
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        font-size: 0.75rem;
+        color: #ffffff !important;
+    }
+
+    .social-icons {
+        margin-bottom: 12px;
+    }
+
+    .social-icons a {
+        font-size: 1.2rem;
+        margin: 0 8px;
+    }
+
+    .copyright {
+        font-size: 0.65rem;
+        padding-bottom: 10px; /* Jarak aman dari navigasi HP */
     }
 }
