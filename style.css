@@ -263,7 +263,7 @@ footer, .main-footer {
 }
 
 /* --- RESPONSIVE COOKIE (Tetap Sejajar di Mobile jika memungkinkan) --- */
-@media (max-width: 650px) {
+@media (max-width: 600px) {
     .cookie-banner {
         width: 100% !important;
         left: 0 !important;
@@ -343,6 +343,7 @@ footer, .main-footer {
     footer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
 
 }
+
 
 
 
