@@ -1,0 +1,50 @@
+/* --- PENGATURAN DASAR ANIMASI --- */
+.reveal {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity;
+}
+
+/* 1. Muncul dari Bawah (Untuk Teks) */
+.reveal-up {
+    transform: translateY(40px);
+}
+
+/* 2. Muncul dari Kiri (Untuk Gambar Ganjil) */
+.reveal-left {
+    transform: translateX(-60px);
+}
+
+/* 3. Muncul dari Kanan (Untuk Gambar Genap/Reverse) */
+.reveal-right {
+    transform: translateX(60px);
+}
+
+/* --- STATE AKTIF (DIPICU OLEH JAVASCRIPT) --- */
+.reveal.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(0, 0) !important;
+}
+
+/* Animasi Khusus Hero Banner saat Halaman Dimuat */
+.hero-content h1 {
+    animation: fadeZoomIn 1s ease-out forwards;
+}
+
+.hero-content p {
+    animation: fadeZoomIn 1s ease-out 0.3s forwards;
+    opacity: 0; /* Mulai dari tidak terlihat */
+}
+
+@keyframes fadeZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
