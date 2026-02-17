@@ -212,12 +212,70 @@ footer, .main-footer {
 
 /* --- COOKIE BANNER --- */
 .cookie-banner {
-    position: fixed; bottom: 0; left: 0; width: 100%;
-    background: rgba(35, 42, 52, 0.98); color: white;
-    padding: 15px; z-index: 9999; display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(22, 27, 34, 0.98); /* Warna gelap sesuai image */
+    color: white;
+    padding: 15px 25px;
+    z-index: 9999;
+    border-top: 2px solid var(--color-sky);
+    display: none;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
 }
-.tos-link { color: var(--color-cyan) !important; text-decoration: underline; }
-#accept-cookie { background: var(--color-sky); color: white; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; }
+
+.cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; /* Memastikan teks dan tombol SEJAJAR */
+    justify-content: space-between;
+    align-items: center; /* Menjaga posisi vertikal tetap di tengah */
+    gap: 20px;
+}
+
+.cookie-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    flex: 1; /* Mengambil sisa ruang agar tombol terdorong ke kanan */
+}
+
+#accept-cookie {
+    background: var(--color-sky); /* Warna biru cerah */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap; /* Mencegah teks tombol terpotong atau turun baris */
+    transition: 0.3s;
+}
+
+#accept-cookie:hover {
+    background: var(--white);
+    color: var(--color-dark);
+}
+
+/* --- RESPONSIVE COOKIE (Tetap Sejajar di Mobile jika memungkinkan) --- */
+@media (max-width: 650px) {
+    .cookie-content {
+        padding: 5px 0;
+        gap: 15px;
+        /* Jika teks terlalu panjang di iPhone SE, biarkan tetap satu baris tapi teks mengecil */
+    }
+
+    .cookie-content p {
+        font-size: 0.7rem; /* Mengecilkan teks agar tetap muat sejajar */
+    }
+
+    #accept-cookie {
+        padding: 8px 15px;
+        font-size: 0.75rem;
+    }
+}
 
 /* --- ANIMATION CLASSES (GABUNGAN) --- */
 .reveal {
@@ -262,4 +320,5 @@ footer, .main-footer {
     
     /* Footer Safety */
     footer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+
 }
