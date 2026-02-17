@@ -1,332 +1,152 @@
+/* ARTHROTH FINAL CSS - BUILD 2026
+   FIX: Android Footer Gap, Hero Full Screen, Zigzag Mobile
+*/
+
 :root {
-    --color-dark: #0054AA;
-    --color-sky: #00A9DD;
+    --color-dark: #0054AA;       /* Deep Blue */
+    --color-mid: #0677BA;
+    --color-sky: #00A9DD;        /* Sky Blue */
     --color-cyan: #6FCCEA;
-    --color-bg-alt: #E9F6FB;
+    --color-bg-alt: #E9F6FB;     /* Light BG */
     --white: #ffffff;
     --text-body: #2c3e50;
 }
 
-/* Base Fix */
-html { height: 100%; }
+/* --- TRICK ANTI-PUTIH ANDROID --- */
+html {
+    background-color: var(--color-dark) !important; /* Mewarnai 'lantai' browser */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    margin: 0; display: flex; flex-direction: column; 
-    min-height: 100vh; min-height: 100dvh;
-}
-main { flex: 1 0 auto; }
-
-/* Header & Nav */
-header { background: var(--color-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--color-sky); }
-.header-container { max-width: 1200px; margin: 0 auto; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
-.logo img { height: 45px; }
-.nav-menu a { color: var(--white); text-decoration: none; margin-left: 15px; font-size: 0.85rem; font-weight: 600; }
-
-/* --- HERO SECTION STYLES --- */
-.hero-section {
- background: linear-gradient(135deg, rgba(0, 84, 170, 0.4) 0%, rgba(6, 119, 186, 0.3) 100%),url('images/hero-banner.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    padding: 120px 20px; /* Sedikit dipertinggi agar gambar lebih terlihat */
-    text-align: center;
-    color: var(--white);
-    border-bottom: 5px solid var(--color-sky);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-container {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
-
-.hero-content h1 {
-    font-size: 3.5rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 35px;
-    opacity: 0.9;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Tombol Hero */
-.hero-btns {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.btn-primary {
-    background: var(--color-sky);
-    color: var(--white);
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 800;
-    text-transform: uppercase;
-    transition: 0.3s;
-}
-
-.btn-secondary {
-    border: 2px solid var(--color-pale);
-    color: var(--color-pale);
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 800;
-    text-transform: uppercase;
-    transition: 0.3s;
-}
-
-.btn-primary:hover { background: var(--white); color: var(--color-dark); }
-.btn-secondary:hover { background: var(--color-pale); color: var(--color-dark); }
-
-/* Sections Zigzag Desktop */
-.info-section { padding: 60px 0; }
-.info-section.alternate { background-color: var(--color-bg-alt); }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 15px; display: flex; align-items: center; gap: 40px; }
-.info-section .container { flex-direction: row; }
-.info-section.reverse .container { flex-direction: row-reverse; }
-.info-section.reverse .info-text { text-align: right; }
-.info-image { flex: 0 0 45%; }
-.info-text { flex: 1; }
-.info-image img { width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-.accent-line { display: block; width: 40px; height: 4px; background: var(--color-sky); margin-bottom: 12px; }
-.info-section.reverse .accent-line { margin-left: auto; }
-
-/* Cookie Banner Styling */
-.cookie-banner {
-    position: fixed; bottom: 0; left: 0; width: 100%;
-    background: rgba(0, 84, 170, 0.98); color: white;
-    padding: 15px; z-index: 9999; border-top: 2px solid var(--color-sky);
-    display: none; box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-}
-.cookie-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-.cookie-content p { font-size: 0.9rem; margin: 0; line-height: 1.4; }
-
-/* Gaya Link ToS di Cookies */
-.tos-link {
-    color: var(--color-cyan) !important;
-    text-decoration: underline;
-    font-weight: 700;
-}
-.tos-link:hover { color: var(--white) !important; }
-
-#accept-cookie { background: var(--color-sky); color: white; border: none; padding: 8px 18px; border-radius: 4px; font-weight: 800; cursor: pointer; }
-
-/* LEGAL PAGE STYLES */
-.legal-page {
-    padding: 60px 20px;
-    background: var(--color-bg-alt);
-}
-
-.legal-container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: var(--white);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-
-.legal-container h1 { color: var(--color-dark); margin-bottom: 10px; }
-.last-updated { font-size: 0.8rem; color: #888; margin-bottom: 30px; }
-
-.legal-content h3 { color: var(--color-mid); margin: 25px 0 10px 0; }
-.legal-content p { line-height: 1.6; color: #555; margin-bottom: 15px; }
-
-.back-home {
-    display: inline-block;
-    margin-top: 40px;
-    color: var(--color-sky);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-@media (max-width: 650px) {
-    .legal-container { padding: 25px; }
-    .legal-container h1 { font-size: 1.5rem; }
-}
-
-/* --- FIX FOOTER: Warna Biru Tua & Rapat di Bawah --- */
-
-/* 1. Pastikan Body mendorong footer ke dasar layar */
-html { height: 100%; }
-body {
+    background-color: var(--white);
     margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    min-height: 100dvh; /* Menghilangkan sisa ruang bawah di HP */
+    min-height: 100dvh; /* Dynamic Viewport untuk HP */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-main { 
-    flex: 1 0 auto; /* Bagian konten akan mengambil sisa ruang */
+main { flex: 1 0 auto; background-color: var(--white); }
+
+/* --- HEADER & NAV --- */
+header {
+    background: var(--color-dark);
+    position: sticky; top: 0; z-index: 1000;
+    border-bottom: 3px solid var(--color-sky);
 }
 
-/* 2. Styling Footer Utama */
-.footer-container {
+.header-container {
+    max-width: 1200px; margin: 0 auto; padding: 10px 15px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.logo a { display: block; border: none; }
+.logo img { height: 45px; width: auto; display: block; }
+
+.nav-menu a {
+    color: var(--white); text-decoration: none; margin-left: 18px;
+    font-size: 0.85rem; font-weight: 600; transition: 0.3s;
+}
+.nav-menu a:hover { color: var(--color-cyan); }
+
+/* --- HERO SECTION: FULL SCREEN --- */
+.hero-section {
+    background: linear-gradient(135deg, rgba(0, 84, 170, 0.4) 0%, rgba(6, 119, 186, 0.3) 100%),url('images/hero-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 80vh; 
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; color: var(--white);
+    border-bottom: 3px solid var(--color-sky);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem; font-weight: 900; text-transform: uppercase;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.6); margin-bottom: 20px;
+}
+
+.hero-btns { display: flex; justify-content: center; gap: 20px; }
+.btn-primary { background: var(--color-sky); color: white; padding: 12px 25px; border-radius: 4px; text-decoration: none; font-weight: 800; }
+.btn-secondary { border: 2px solid white; color: white; padding: 12px 25px; border-radius: 4px; text-decoration: none; font-weight: 800; }
+
+/* --- INFO SECTIONS: ZIGZAG PATTERN --- */
+
+.info-section { padding: 80px 0; }
+.info-section.alternate { background-color: var(--color-bg-alt); }
+
+.container {
+    max-width: 1100px; margin: 0 auto; padding: 0 20px;
+    display: flex; align-items: center; gap: 60px;
+}
+
+.info-section .container { flex-direction: row; }
+.info-section.reverse .container { flex-direction: row-reverse; }
+.info-section.reverse .info-text { text-align: right; }
+
+.info-image { flex: 0 0 45%; }
+.info-text { flex: 1; }
+.info-image img { width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+
+.accent-line {
+    display: block; width: 45px; height: 4px;
+    background: var(--color-sky); margin-bottom: 15px;
+}
+.info-section.reverse .accent-line { margin-left: auto; }
+
+.info-text h2 { color: var(--color-dark); font-size: 2rem; margin-bottom: 15px; text-transform: uppercase; }
+
+/* --- FOOTER: FIXED & CLEAN --- */
+footer, .main-footer {
     flex-shrink: 0;
-    background-color: #0054AA !important; /* Paksa warna Deep Blue */
-    padding: 5px 15px;
+    background-color: var(--color-dark) !important;
+    padding: 40px 15px;
     text-align: center;
-    color: #ffffff !important;
-    border-top: 3px solid #00A9DD; /* Garis aksen biru muda */
+    color: var(--white) !important;
+    border-top: 3px solid var(--color-sky);
+    margin-top: 0;
 }
 
-/* 3. Memperbaiki Link Footer agar tidak ungu/biru default */
-.footer-links {
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+.footer-links { margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; }
+.footer-links a { color: var(--white) !important; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+.social-icons a { color: var(--white); font-size: 1.4rem; margin: 0 12px; }
+.copyright { opacity: 0.7; font-size: 0.8rem; margin-top: 15px; }
 
-.footer-links a {
-    color: #ffffff !important; /* Paksa warna putih */
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 700;
+/* --- COOKIE BANNER --- */
+.cookie-banner {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: rgba(35, 42, 52, 0.98); color: white;
+    padding: 15px; z-index: 9999; display: none;
 }
+.tos-link { color: var(--color-cyan) !important; text-decoration: underline; }
+#accept-cookie { background: var(--color-sky); color: white; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; }
 
-.footer-links a:hover {
-    color: #6FCCEA !important; /* Warna cyan saat disentuh */
-}
-
-/* 4. Ikon Sosial Media */
-.social-icons {
-    margin-bottom: 15px;
-}
-
-.social-icons a {
-    color: #ffffff !important;
-    font-size: 1.3rem;
-    margin: 0 12px;
-    transition: 0.3s;
-}
-
-/* 5. Teks Copyright */
-.copyright {
-    color: #C7EBF8;
-    opacity: 0.7;
-    font-size: 0.75rem;
-    margin-top: 10px;
-}
-
-/* --- MOBILE --- */
+/* --- MOBILE OPTIMIZATION (THE ULTIMATE FIX) --- */
 @media (max-width: 650px) {
-
-    /* 1. Mendorong Footer Rapat ke Bawah */
-    html, body {
-        height: 100%;
-        margin: 0;
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100dvh; /* Mengikuti tinggi layar HP secara dinamis */
-    }
-
-    main {
-        flex: 1 0 auto; /* Memaksa bagian ini mengambil sisa ruang agar footer terdorong ke bawah */
-    }
-
-    /* 2. Header: Logo Kiri & Menu Kanan */
-    .header-container {
-        padding: 8px 12px;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        gap: 8px;
-    }
-
+    /* Header & Logo Left */
+    .header-container { padding: 8px 12px; justify-content: flex-start; gap: 8px; }
     .logo img { height: 26px; }
+    .nav-menu { flex: 1; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 3px 8px; }
+    .nav-menu a { font-size: 0.62rem; margin: 0; }
 
-    .nav-menu {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-        gap: 3px 8px;
-    }
+    /* Hero Full */
+    .hero-section { min-height: 100dvh; padding: 40px 15px; }
+    .hero-content h1 { font-size: 1.8rem; line-height: 1.2; }
+    .hero-btns { flex-direction: column; width: 100%; max-width: 250px; margin: 0 auto; }
 
-    .nav-menu a {
-        font-size: 0.62rem;
-        letter-spacing: -0.2px;
-    }
-
-    /* 3. Hero Banner: Full Screen */
-    .hero-section {
-        min-height: 100dvh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px 15px;
-    }
-
-    .hero-content h1 {
-        font-size: 1.8rem;
-        line-height: 1.2;
-    }
-
-    /* 4. Zigzag Content: Side-by-Side */
-    .container { 
-        display: flex !important;
-        flex-direction: row !important; 
-        gap: 12px !important; 
-    }
+    /* Zigzag Mobile */
+    .container { display: flex !important; flex-direction: row !important; gap: 12px !important; align-items: flex-start !important; }
+    .info-section.reverse .container { flex-direction: row-reverse !important; }
+    .info-section.reverse .info-text { text-align: right !important; }
+    .info-image { flex: 0 0 42% !important; min-width: 95px; }
+    .info-text h2 { font-size: 0.8rem; }
+    .info-text p { font-size: 0.6rem; }
     
-    .info-section.reverse .container { 
-        flex-direction: row-reverse !important; 
-    }
-
-    .info-image { flex: 0 0 42% !important; min-width: 95px !important; }
-    .info-text h2 { font-size: 0.82rem; }
-    .info-text p { font-size: 0.62rem; }
-
-    /* 5. Footer Fix Android: Warna Biru Tua & No Gap */
-    footer, .main-footer {
-        flex-shrink: 0;
-        background-color: #0054AA !important; /* Paksa Biru Tua */
-        padding: 25px 15px 15px 15px; /* Tambah padding bawah sedikit agar lega */
-        text-align: center;
-    }
-
-    .footer-links {
-        gap: 12px;
-        margin-bottom: 12px;
-    }
-
-    .footer-links a {
-        font-size: 0.75rem;
-        color: #ffffff !important;
-    }
-
-    .social-icons {
-        margin-bottom: 12px;
-    }
-
-    .social-icons a {
-        font-size: 1.2rem;
-        margin: 0 8px;
-    }
-
-    .copyright {
-        font-size: 0.65rem;
-        padding-bottom: 10px; /* Jarak aman dari navigasi HP */
-    }
+    /* Footer Safety */
+    footer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
 }
