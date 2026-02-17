@@ -173,24 +173,27 @@ header {
 
 /* --- RESPONSIVE TOS (iPhone SE & Android) --- */
 @media (max-width: 650px) {
-    .legal-page {
-        padding: 30px 15px;
+    .cookie-banner {
+        padding: 20px 15px; /* Memberi ruang napas lebih lega */
     }
 
-    .legal-container {
-        padding: 25px;
+    .cookie-content {
+        flex-direction: column !important; /* Paksa tumpuk ke bawah agar tidak keluar layar */
+        text-align: center;
+        gap: 15px;
     }
 
-    .legal-container h1 {
-        font-size: 1.5rem;
+    .cookie-content p {
+        font-size: 0.8rem; /* Ukuran pas untuk layar HP */
+        line-height: 1.5;
+        flex: none;
+        width: 100%;
     }
 
-    .legal-content h3 {
-        font-size: 1.1rem;
-    }
-
-    .legal-content p {
-        font-size: 0.85rem;
+    #accept-cookie {
+        width: 100%; /* Tombol jadi lebar penuh agar rapi dan mudah diklik */
+        padding: 12px;
+        font-size: 0.9rem;
     }
 }
 
@@ -322,3 +325,4 @@ footer, .main-footer {
     footer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
 
 }
+
