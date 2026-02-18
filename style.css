@@ -1,13 +1,9 @@
-/* ARTHROTH FINAL CSS - BUILD 2026
-   FIX: Android Footer Gap, Hero Full Screen, Zigzag Mobile
-*/
-
 :root {
-    --color-dark: #0054AA;       /* Deep Blue */
+    --color-dark: #0054AA;
     --color-mid: #0677BA;
-    --color-sky: #00A9DD;        /* Sky Blue */
+    --color-sky: #00A9DD;
     --color-cyan: #6FCCEA;
-    --color-bg-alt: #E9F6FB;     /* Light BG */
+    --color-bg-alt: #E9F6FB;
     --white: #ffffff;
     --text-body: #2c3e50;
 }
@@ -28,7 +24,8 @@ body {
     flex-direction: column;
     min-height: 100vh;
     min-height: 100dvh; /* Dynamic Viewport untuk HP */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
 }
 
 main { flex: 1 0 auto; background-color: var(--white); }
@@ -41,8 +38,13 @@ header {
 }
 
 .header-container {
-    max-width: 1200px; margin: 0 auto; padding: 10px 15px;
-    display: flex; justify-content: space-between; align-items: center;
+    /* Tingkatkan dari 1200px menjadi 1400px agar logo & menu lebih ke pinggir */
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 10px 30px; /* Padding samping ditambah sedikit agar tidak mentok */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
 }
 
 .logo a { display: block; border: none; }
@@ -56,24 +58,176 @@ header {
 
 /* --- HERO SECTION: FULL SCREEN --- */
 .hero-section {
-    background: linear-gradient(135deg, rgba(0, 84, 170, 0.4) 0%, rgba(6, 119, 186, 0.3) 100%),url('images/hero-banner.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 80vh; 
-    display: flex; align-items: center; justify-content: center;
-    text-align: center; color: var(--white);
-    border-bottom: 3px solid var(--color-sky);
+    position: relative;
+    width: 100%;
+    min-height: 100dvh; /* Pastikan full screen di HP */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--white);
+    text-align: center;
+}
+
+.hero-video {
+    position: absolute;
+    top: -1500;
+    left: -500;
+    right: 0;
+    bottom: 0;
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Overlay agar teks tetap terbaca di atas video */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.45); 
+    z-index: 1;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- DEVICE IMAGE (Di Atas) --- */
+.hero-device-img {
+    max-width: 220px; /* Ukuran pas untuk HP & Desktop */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+    margin-top: -20px; /* Tarik sedikit ke atas agar pas di tengah-atas */
+}
+
+/* --- TEXT BLOCK (Didorong sedikit ke bawah) --- */
+.hero-text-block {
+    margin-top: 40px; /* MEMBERI JARAK ANTARA DEVICE & JUDUL */
 }
 
 .hero-content h1 {
-    font-size: 3.5rem; font-weight: 900; text-transform: uppercase;
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.6); margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif; /* Pakai Montserrat */
+    font-weight: 800;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    /* ANIMASI DIHAPUS */
 }
 
-.hero-btns { display: flex; justify-content: center; gap: 20px; }
-.btn-primary { background: var(--color-sky); color: white; padding: 12px 25px; border-radius: 4px; text-decoration: none; font-weight: 800; }
-.btn-secondary { border: 2px solid white; color: white; padding: 12px 25px; border-radius: 4px; text-decoration: none; font-weight: 800; }
+.hero-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: 0 auto 30px;
+    /* ANIMASI DIHAPUS */
+}
+
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    /* ANIMASI DIHAPUS */
+}
+
+/* --- RESPONSIVE FIX (HP) --- */
+@media (max-width: 650px) {
+    .hero-device-img {
+        max-width: 160px;
+    }
+    .hero-text-block {
+        margin-top: 30px;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-btns {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+}
+
+/* --- BUTTONS --- */
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    opacity: 0;
+    animation: heroFadeIn 1s ease-out 0.8s forwards;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 14px 30px;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s all ease;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background-color: var(--color-sky);
+    color: white;
+    border: 2px solid var(--color-sky);
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: var(--color-dark);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: var(--color-dark);
+}
+
+/* --- HERO ANIMATION KEYFRAMES --- */
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- RESPONSIVE HERO (iPhone SE & Android) --- */
+@media (max-width: 650px) {
+    .hero-section {
+        min-height: 100dvh; /* Full screen di HP */
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    
+    .hero-btns {
+        flex-direction: column;
+        padding: 0 40px;
+    }
+}
 
 /* --- INFO SECTIONS: ZIGZAG PATTERN --- */
 
@@ -81,17 +235,32 @@ header {
 .info-section.alternate { background-color: var(--color-bg-alt); }
 
 .container {
-    max-width: 1100px; margin: 0 auto; padding: 0 20px;
-    display: flex; align-items: center; gap: 60px;
+    max-width: 1100px; margin: 0 auto; padding: 0 50px;
+    display: flex; align-items: center; gap: 100px;
 }
 
 .info-section .container { flex-direction: row; }
 .info-section.reverse .container { flex-direction: row-reverse; }
 .info-section.reverse .info-text { text-align: right; }
 
-.info-image { flex: 0 0 45%; }
+.info-image { flex: 0 0 20%; }
 .info-text { flex: 1; }
-.info-image img { width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+.info-image img {
+    width: 100%;
+    /* Menentukan rasio tetap (lebar / tinggi).
+       Browser akan otomatis menghitung tingginya. */
+    aspect-ratio: 5 / 5; 
+    
+    /* SANGAT PENTING: Mencegah gambar gepeng.
+       Gambar akan di-crop secara otomatis agar pas mengisi kotak.*/
+    object-fit: cover; 
+    
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    
+    /* Opsional: Memastikan posisi gambar di tengah saat di-crop */
+    object-position: center; 
+}
 
 .accent-line {
     display: block; width: 45px; height: 4px;
@@ -173,27 +342,24 @@ header {
 
 /* --- RESPONSIVE TOS (iPhone SE & Android) --- */
 @media (max-width: 650px) {
-    .cookie-banner {
-        padding: 20px 15px; /* Memberi ruang napas lebih lega */
+    .legal-page {
+        padding: 30px 15px;
     }
 
-    .cookie-content {
-        flex-direction: column !important; /* Paksa tumpuk ke bawah agar tidak keluar layar */
-        text-align: center;
-        gap: 15px;
+    .legal-container {
+        padding: 25px;
     }
 
-    .cookie-content p {
-        font-size: 0.8rem; /* Ukuran pas untuk layar HP */
-        line-height: 1.5;
-        flex: none;
-        width: 100%;
+    .legal-container h1 {
+        font-size: 1.5rem;
     }
 
-    #accept-cookie {
-        width: 100%; /* Tombol jadi lebar penuh agar rapi dan mudah diklik */
-        padding: 12px;
-        font-size: 0.9rem;
+    .legal-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .legal-content p {
+        font-size: 0.85rem;
     }
 }
 
@@ -216,91 +382,75 @@ footer, .main-footer {
 /* --- COOKIE BANNER --- */
 .cookie-banner {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(22, 27, 34, 0.98); /* Warna gelap sesuai image */
-    color: white;
+    bottom: 0; left: 0; width: 100%;
+    background-color: var(--color-dark);
+    box-sizing: border-box; 
     padding: 15px 25px;
     z-index: 9999;
-    border-top: 2px solid var(--color-sky);
+    border-top: 3px solid var(--color-sky);
     display: none;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
 }
 
 .cookie-content {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    flex-direction: row; /* Memastikan teks dan tombol SEJAJAR */
+    flex-direction: row; /* PAKSA SATU BARIS DI DESKTOP */
     justify-content: space-between;
-    align-items: center; /* Menjaga posisi vertikal tetap di tengah */
-    gap: 20px;
+    align-items: center;
+    gap: 30px;
 }
 
 .cookie-content p {
     margin: 0;
+    color: var(--white);
     font-size: 0.9rem;
-    line-height: 1.4;
-    flex: 1; /* Mengambil sisa ruang agar tombol terdorong ke kanan */
+    flex: 1; /* Biar teks ngambil ruang sisa, tombol tetep di kanan */
 }
 
-#accept-cookie {
-    background: var(--color-sky); /* Warna biru cerah */
-    color: white;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 4px;
+.cookie-btns {
+    display: flex;
+    gap: 15px;
+    flex-shrink: 0; /* Biar tombol nggak gepeng saat layar desktop mengecil */
+}
+
+/* --- TOMBOL AGAR SEJAJAR & TIDAK TURUN (I Agree Fix) --- */
+.btn-cookie-primary, .btn-cookie-secondary {
+    padding: 10px 22px;
+    border-radius: 5px;
     font-weight: 700;
     cursor: pointer;
-    white-space: nowrap; /* Mencegah teks tombol terpotong atau turun baris */
+    font-family: 'Montserrat', sans-serif;
     transition: 0.3s;
+    
+    /* SIHIRNYA DI SINI: Mencegah teks turun ke baris baru */
+    white-space: nowrap; 
+    display: inline-block;
+    font-size: 0.85rem;
 }
 
-#accept-cookie:hover {
-    background: var(--white);
-    color: var(--color-dark);
-}
+.btn-cookie-primary { background: var(--color-sky); color: white; border: none; }
+.btn-cookie-secondary { background: transparent; color: white; border: 2px solid rgba(255, 255, 255, 0.4); }
 
-/* --- RESPONSIVE COOKIE (Tetap Sejajar di Mobile jika memungkinkan) --- */
-/* --- COOKIE BANNER MOBILE: ANTI-PULANG-BAWAH --- */
-@media (max-width: 650px) {
-    .cookie-banner {
-        width: 100% !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        padding: 10px 15px !important; /* Ruang dalam banner */
-        box-sizing: border-box !important; /* Kunci utama agar tidak overflow */
-    }
-
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
     .cookie-content {
-        display: flex !important;
-        flex-direction: row !important; /* PAKSA SEJAJAR KE SAMPING */
-        flex-wrap: nowrap !important; /* Dilarang turun baris */
-        align-items: center !important;
-        justify-content: space-between !important;
-        gap: 10px !important; /* Jarak antara teks dan tombol */
-        width: 100% !important;
+        flex-direction: column; /* Di HP teks di atas, tombol di bawah agar tidak sesak */
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .cookie-btns {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
     }
 
-    .cookie-content p {
-        font-size: 0.65rem !important; /* Ukuran pas biar teks melipat di dalam */
-        line-height: 1.3 !important;
-        margin: 0 !important;
-        flex: 1 !important; /* Teks akan mengalah melipat ke bawah jika ruang sempit */
-        text-align: left !important;
-    }
-
-    #accept-cookie {
-        flex: 0 0 auto !important; /* Tombol dilarang gepeng atau melar */
-        width: auto !important; /* Ukuran pas dengan tulisan 'Okay' */
-        padding: 6px 14px !important; /* Tombol lebih ramping */
-        font-size: 0.75rem !important;
-        font-weight: 700 !important;
-        white-space: nowrap !important; /* Teks 'Okay' tetap satu baris */
-        background-color: var(--color-sky) !important;
-        border-radius: 4px !important;
+    .btn-cookie-primary, .btn-cookie-secondary {
+        flex: 1; /* Biar lebarnya sama rata di HP */
+        padding: 10px 5px; /* Kurangi padding samping biar muat */
+        font-size: 0.75rem;
     }
 }
 
@@ -347,14 +497,4 @@ footer, .main-footer {
     
     /* Footer Safety */
     footer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
-
 }
-
-
-
-
-
-
-
-
-
